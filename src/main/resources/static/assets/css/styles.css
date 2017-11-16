@@ -1,0 +1,15 @@
+.nav-head {
+    background-color: #ffffff;
+    height: 114px;
+}
+
+.navbar-brand {
+    width: 150px;
+    height: auto;
+}
+
+.navbar-nav {
+    margin-top: 15px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+}
