@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Create Tournament</title>
+    <link rel="stylesheet" th:href="@{'/webjars/bootstrap/3.3.7-1/css/bootstrap.css'}"/>
+    <link rel="stylesheet" href="/assets/css/styles.css"/>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Create a new post</h1>
+        <form class="form-horizontal" action="/newEvent" method="POST" th:object="${event}">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <div class="form-group">
+                <label class="control-label col-xs-2">Tournament Name</label>
+                <div class="col-xs-6" >
+                    <input class="form-control" type="text" th:field="*{name}" placeholder="Please enter a Tournament Name"/>
+                </div>
+            </div>
+            <br/>
+            <!--<div class="form-group">-->
+                <!--<label class="control-label col-xs-2">Category</label>-->
+                <!--<div class="col-xs-6">-->
+                    <!--<select class="form-control" name="categories" th:field="*{category}" th:required="true">-->
+                        <!--<option value="">Select Type of Post</option>-->
+                        <!--<option value="Give">Give</option>-->
+                        <!--<option value="Ask">Ask</option>-->
+                        <!--<option value="Flash Give">Flash Give</option>-->
+                    <!--</select>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="form-group">
+                <label class="control-label col-xs-2">Entry Fee</label>
+                <div class="col-xs-6">
+                    <input class="form-control" th:field="*{fee}" type="text"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Tournament Start</label>
+                <div class="col-xs-6">
+                    <input class="form-control" th:field="*{start}" type="text"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Tournament End</label>
+                <div class="col-xs-6">
+                    <input class="form-control" th:field="*{until}" type="text"/>
+                </div>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Location</label>
+                <div class="col-xs-6">
+                    <input class="form-control" type="text" th:field="*{location}" placeholder="Please enter tournament address"/>
+                </div>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label class="control-label col-xs-2">Description</label>
+                <div class="col-xs-6">
+                    <textarea class="form-control" cols="30" rows="10" th:field="*{description}" th:required="true" placeholder="Write a brief description for your tournament"></textarea>
+                </div>
+            </div>
+            <br/>
+
+            <!--<div class="form-group">-->
+                <!--<label class="control-label col-xs-2" for="upload">Upload an image file</label>-->
+                <!--<div class="col-xs-6">-->
+                    <!--<input id="upload" class="form-control" type="file" name="file" th:required="true"/>-->
+                <!--</div>-->
+            <!--</div>-->
+
+            <div class="form-group">
+                <div class="col-xs-6 col-xs-offset-2">
+                    <input class="btn btn-success pull-right" type="submit" value="Submit"/>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <script th:replace="fragments/template :: bs-js"></script>
+</body>
+</html>

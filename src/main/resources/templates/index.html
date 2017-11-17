@@ -10,6 +10,20 @@
         <h1>Welcome to Fatsack Outdoors</h1>
     </div>
 
+    <div class="container col-xs-4" th:each="event: ${events}">
+        <div class="panel panel-default" >
+            <div class="panel-heading">
+                <h3 class="panel-title" th:text="${event.name}">Panel title</h3>
+            </div>
+            <div class="panel-body">
+                <li th:text="${event.location}"></li>
+                <li th:text="${event.description}"></li>
+                <li th:text="${event.fee}"></li>
+                <li th:text="${event.start}"></li>
+                <li th:text="${event.until}"></li>
+            </div>
+        </div>
+    </div>
 
 
 

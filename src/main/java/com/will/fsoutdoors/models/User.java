@@ -35,6 +35,10 @@ public class User implements UserDetails {
         return role;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private Event event;
+
     public void setRole(Role role) {
         this.role = role;
     }
@@ -124,5 +128,14 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+//    public Event getEvent() {
+//        return event;
+//    }
+//
+//    public void setEvent(Event event) {
+//        this.event = event;
+//    }
+
 
 }
