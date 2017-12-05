@@ -7,24 +7,36 @@
     <div th:replace="fragments/template :: nav-header"></div>
 
     <div class="container">
-        <h1>Welcome to Fatsack Outdoors</h1>
-    </div>
+        <h1>Welcome to FS Outdoors</h1>
+
 
     <div class="container col-xs-4" th:each="event: ${events}">
         <div class="panel panel-default" >
             <div class="panel-heading">
-                <h3 class="panel-title" th:text="${event.name}">Panel title</h3>
+                <a th:href="@{'/detail/' + ${event.id}}"><h3 class="panel-title event-link" th:text="${event.name}"></h3></a>
             </div>
             <div class="panel-body">
-                <li th:text="${event.location}"></li>
-                <li th:text="${event.description}"></li>
-                <li th:text="${event.fee}"></li>
-                <li th:text="${event.start}"></li>
-                <li th:text="${event.until}"></li>
+                <label class="control-label col-xs-4" for="loc">Location</label>
+                <div id="loc" th:text="${event.location}"></div>
+                <br/>
+                <label class="control-label col-xs-4" for="desc">Description</label>
+                <div id="desc" th:text="${event.description}"></div>
+                <br/>
+                <label class="control-label col-xs-4" for="fee">Entry Fee</label>
+                <div id="fee" th:text="${event.fee}"></div>
+                <br/>
+                <label class="control-label col-xs-4" for="start">Starts</label>
+                <div id="start" th:text="${event.start}"></div>
+                <br/>
+                <label class="control-label col-xs-4" for="until">Ends</label>
+                <div id="until" th:text="${event.until}"></div>
+                <br/>
+                <label for="host" class="control-label col-xs-4">Hosted By</label>
+                <a th:href="@{'/user/' + ${event.host.username}}"><div id="host" th:text="${event.host.username}"></div></a>
             </div>
         </div>
     </div>
-
+    </div>
 
 
     <script th:replace="fragments/template :: bs-js"></script>

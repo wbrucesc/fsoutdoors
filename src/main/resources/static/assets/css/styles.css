@@ -13,3 +13,8 @@
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 16px;
 }
+
+.event-link {
+    color: #E1733C;
+    text-decoration: none;
+}

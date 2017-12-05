@@ -40,9 +40,9 @@ public class Event {
     public Event() {
     }
 
-//    @OneToMany(mappedBy = "event",
-//    cascade = CascadeType.ALL)
-//    private List<User> participants;
+    @OneToMany(mappedBy = "event",
+    cascade = CascadeType.ALL)
+    private List<Entry> entries;
 
     @OneToOne
     @JoinColumn(name = "host")
@@ -104,29 +104,14 @@ public class Event {
         this.created = created;
     }
 
-//    public List<User> getParticipants() {
-//        return participants;
-//    }
-//
-//    public void setParticipants(List<User> participants) {
-//        this.participants = participants;
-//    }
+    public List<Entry> getEntries() {
+        return entries;
+    }
 
-//    public Date getStart() {
-//        return start;
-//    }
-//
-//    public void setStart(Date start) {
-//        this.start = start;
-//    }
-//
-//    public Date getUntil() {
-//        return until;
-//    }
-//
-//    public void setUntil(Date until) {
-//        this.until = until;
-//    }
+    public void setEntries(List<Entry> entries) {
+        this.entries = entries;
+    }
+
 
     public User getHost() {
         return host;
@@ -151,4 +136,6 @@ public class Event {
     public void setUntil(String until) {
         this.until = until;
     }
+
+
 }

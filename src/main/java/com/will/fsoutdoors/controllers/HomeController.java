@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -27,6 +28,7 @@ public class HomeController {
 
     @Autowired
     private EventRepository eventRepo;
+
     // home page
     @RequestMapping("/")
     public String index(Model model,
@@ -37,6 +39,7 @@ public class HomeController {
             model.addAttribute("events", eventRepo.findAll());
             return "index";
         }
+        model.addAttribute("events", eventRepo.findAll());
         return "index";
     }
 
@@ -65,4 +68,21 @@ public class HomeController {
         eventRepo.save(event);
         return "redirect:/";
     }
+
+    // event details page
+    @RequestMapping(value = "/detail/{eventId}", method = RequestMethod.GET)
+    public String eventDetail(Model model,
+                              @PathVariable("eventId") long eventId,
+                              Principal principal) {
+        if (principal != null) {
+            Event targetEvent = eventRepo.findOne(eventId);
+            model.addAttribute("event", targetEvent);
+            User me = userRepo.findByUsername(principal.getName());
+            model.addAttribute("user", me);
+            model.addAttribute("entries", targetEvent.getEntries());
+            return "detail";
+        }
+        return "detail";
+    }
+
 }
