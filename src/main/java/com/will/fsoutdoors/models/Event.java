@@ -16,6 +16,8 @@ public class Event {
     private long id;
 
     private String name;
+    private String category;
+    private String fishTypes;
     private int fee;
     private String location;
     private String description;
@@ -137,5 +139,19 @@ public class Event {
         this.until = until;
     }
 
+    public String getCategory() {
+        return category;
+    }
 
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getFishTypes() {
+        return fishTypes;
+    }
+
+    public void setFishTypes(String fishTypes) {
+        this.fishTypes = fishTypes;
+    }
 }

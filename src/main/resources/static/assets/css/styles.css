@@ -18,3 +18,7 @@
     color: #E1733C;
     text-decoration: none;
 }
+
+#desc {
+    display: flex;
+}

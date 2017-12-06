@@ -1,8 +1,10 @@
 package com.will.fsoutdoors.controllers;
 
 
+import com.will.fsoutdoors.models.Entry;
 import com.will.fsoutdoors.models.Event;
 import com.will.fsoutdoors.models.User;
+import com.will.fsoutdoors.repos.EntryRepository;
 import com.will.fsoutdoors.repos.EventRepository;
 import com.will.fsoutdoors.repos.RoleRepository;
 import com.will.fsoutdoors.repos.UserRepository;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -28,6 +31,9 @@ public class HomeController {
 
     @Autowired
     private EventRepository eventRepo;
+
+    @Autowired
+    private EntryRepository entryRepo;
 
     // home page
     @RequestMapping("/")
@@ -84,5 +90,36 @@ public class HomeController {
         }
         return "detail";
     }
+
+    @RequestMapping(value = "/enter/{eventId}", method = RequestMethod.GET)
+    public String joinEventForm(Model model,
+                                @PathVariable("eventId") long eventId,
+                                Principal principal) {
+        if (principal != null) {
+            User me = userRepo.findByUsername(principal.getName());
+            model.addAttribute("user", me);
+            Event targetEvent = eventRepo.findOne(eventId);
+            model.addAttribute("event", targetEvent);
+            return "join";
+        }
+        return "login";
+    }
+
+    @RequestMapping(value = "/enter/{eventId}", method = RequestMethod.POST)
+    public String joinEvent(Model model,
+                            @PathVariable("eventId") long eventId,
+                            Principal principal) {
+        if (principal != null) {
+            User me = userRepo.findByUsername(principal.getName());
+            model.addAttribute("user", me);
+            Event targetEvent = eventRepo.findOne(eventId);
+            model.addAttribute("event", targetEvent);
+            Entry newEntry = new Entry(me, targetEvent);
+            entryRepo.save(newEntry);
+            return "redirect:/detail/{eventId}";
+        }
+        return "login";
+    }
+
 
 }

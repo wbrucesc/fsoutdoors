@@ -21,6 +21,11 @@ public class Entry {
     public Entry() {
     }
 
+    public Entry(User user, Event event) {
+        this.user = user;
+        this.event = event;
+    }
+
     public long getId() {
         return id;
     }

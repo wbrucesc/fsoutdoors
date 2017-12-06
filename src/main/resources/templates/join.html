@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Join Contest</title>
+    <link rel="stylesheet" th:href="@{'/webjars/bootstrap/3.3.7-1/css/bootstrap.css'}"/>
+    <link rel="stylesheet" href="/assets/css/styles.css"/>
+</head>
+<body>
+    <div th:replace="fragments/template :: nav-header"></div>
+
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div>Are you sure you want to join this event?</div>
+            </div>
+            <div class="panel-body">
+                <form action="" method="POST">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <input class="btn btn-info pull-right" type="submit" value="Join" />
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

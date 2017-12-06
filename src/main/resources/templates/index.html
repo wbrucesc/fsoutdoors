@@ -19,11 +19,11 @@
                 <label class="control-label col-xs-4" for="loc">Location</label>
                 <div id="loc" th:text="${event.location}"></div>
                 <br/>
-                <label class="control-label col-xs-4" for="desc">Description</label>
-                <div id="desc" th:text="${event.description}"></div>
-                <br/>
+                <!--<label class="control-label col-xs-4" for="desc">Description</label>-->
+                <!--<div id="desc" th:text="${event.description}"></div>-->
+                <!--<br/>-->
                 <label class="control-label col-xs-4" for="fee">Entry Fee</label>
-                <div id="fee" th:text="${event.fee}"></div>
+                <div id="fee" th:text="${'$' + event.fee}"></div>
                 <br/>
                 <label class="control-label col-xs-4" for="start">Starts</label>
                 <div id="start" th:text="${event.start}"></div>
